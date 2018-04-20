@@ -1,0 +1,6 @@
+#root{
+    height: 100%
+}
+#content{
+    background: linear-gradient(90deg, #C3C7C8 0%, #E5D4C2 100%);
+}

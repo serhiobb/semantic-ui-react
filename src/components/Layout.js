@@ -1,11 +1,12 @@
 import React from 'react'
 import {
-	Menu, Container, Button, Grid, Icon, Input, Label, Sidebar, Segment
+	Menu, Container, Button, Grid, Icon, Input, Label, 
+	Sticky, Sidebar, Segment
 } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 
 export default class Layout extends React.Component {
-	state = { visibleMenu: true }
+	state = { visibleMenu: true , stickyActive: true }
 
 	toggleMenu = () => this.setState({ visibleMenu: !this.state.visibleMenu })
 
@@ -15,9 +16,11 @@ export default class Layout extends React.Component {
 			<Container fluid style={{height: '100%'}}>
 			<Container fluid>
 				<Menu borderless={true} size='massive' fluid={true}>
+						<Sticky active={true}>
 						<Menu.Item as={Button} onClick={this.toggleMenu}>
-							<Icon name='content'/>
+							<Icon size="big" name='content'/>
 						</Menu.Item>
+						</Sticky>
 						<Menu.Item as={Link} to={'/'} active>
 							<Icon name='circle' color="yellow"
 							      circular={true} style={{backgroundColor: 'limegreen'}}/>

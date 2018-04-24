@@ -20,6 +20,21 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Semantic UI React App</title>
+
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBSsDY71jyn2VGg4S-M1NP6HtVq2gS7nm0",
+        authDomain: "docs-wp-export.firebaseapp.com",
+        databaseURL: "https://docs-wp-export.firebaseio.com",
+        projectId: "docs-wp-export",
+        storageBucket: "testsData",
+        messagingSenderId: "638116648392"
+      };
+      firebase.initializeApp(config);
+    </script>
   </head>
   <body>
     <noscript>

@@ -1,4 +1,5 @@
 import React from 'react'
+import TextInput from './TextInput.js'
 import {
 	Icon, Container, Grid, Form, Segment, Button, Message,
 	Header, Label, Menu
@@ -27,23 +28,7 @@ export default class Login extends React.Component {
 						<Header textAlign="center">Login</Header>
 						<Form size='large'>
 							<Segment basic stacked>
-								<Form.Field>
-									<Label style={{
-										backgroundColor: 'transparent',
-										marginLeft: '-10px'
-									}}>
-										Email
-									</Label>
-									<Form.Input
-										fluid
-										transparent
-										placeholder='Enter email'
-										style={{
-											borderBottom: "#999 1px solid",
-											paddingBottom: "5px"
-										}}
-									/>
-								</Form.Field>
+								<TextInput label="email" placeholder="Enter email"/>
 								<Form.Field>
 									<Label style={{
 										backgroundColor: 'transparent',

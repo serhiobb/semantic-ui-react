@@ -36,7 +36,7 @@ export default class Layout extends React.Component {
 					         width='thin' visible={visibleMenu} dimmed={true} vertical>
 						<Menu.Item as={Link} to={'/'}>
 							<Icon name='life ring' />
-							Library
+							Main
 						</Menu.Item>
 						<Menu.Item as={Link} to={'/files'}>
 							<Icon name='folder open' />

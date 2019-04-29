@@ -13,7 +13,6 @@ export default class Profile extends React.Component {
 				<Image circular={true} src='https://react.semantic-ui.com/assets/images/avatar/large/matthew.png' />
 			</div>
 				<Card style={{margin: '20px'}}>
-					
 					<Card.Content>
 						<Card.Header>
 							<Icon name='user' />
@@ -31,25 +30,25 @@ export default class Profile extends React.Component {
 							24 products
 					</Card.Content>
 				</Card>
-
 				<Segment style={{margin: '20px'}}>
-							<Form>
-								<TextInput label='Name' placeholder='Name' />
-								<TextInput label='Login' placeholder='Login' />
-								<TextInput label='Email' placeholder='Email' />
-							</Form>
+					<Form>
+						<TextInput label='Name' placeholder='Name' />
+						<TextInput label='Login' placeholder='Login' />
+						<TextInput label='Email' placeholder='Email' />
+						<Button basic color="yellow" style={{verticalAlign: 'bottom'}} type='submit'>Change</Button>
+					</Form>
 					<Divider/>
-							<Form>
-<TextInput label='Old password' type="password" />
-<TextInput label='New password' type="password" />
-<TextInput label='Repeat password' type="password" />
-<Button basic color="yellow" style={{verticalAlign: 'bottom'}} type='submit'>Change</Button>
-							</Form>
+						<Form>
+							<TextInput label='Old password' type="password" />
+							<TextInput label='New password' type="password" />
+							<TextInput label='Repeat password' type="password" />
+							<Button basic color="yellow" style={{verticalAlign: 'bottom'}} type='submit'>Change</Button>
+						</Form>
 					<Divider/>
-							<Form>
-<Checkbox slider label="Another option"/>
-<Checkbox slider label="And another one"/>
-							</Form>
+					<Form>
+						<Checkbox slider label="Another option"/>
+						<Checkbox slider label="And another one"/>
+					</Form>
 				</Segment>
 			</div>
 		)

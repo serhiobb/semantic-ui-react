@@ -5,8 +5,18 @@ import {
 	Header, Label, Menu
 } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
-export default class Login extends React.Component {
+
+class Login extends React.Component {
+	constructor(props) {
+		super(props)
+		this.handleSubmit = this.handleSubmit.bind(this)
+	}
+	handleSubmit(event) {
+		let authUser = event.target.elements['email'].value
+		this.props.onAuthUser(authUser)
+	}
 	render() {
 		return(
 			<Container style={{paddingTop: '20px'}}>
@@ -26,9 +36,9 @@ export default class Login extends React.Component {
 					</Segment>
 					<Segment>
 						<Header textAlign="center">Login</Header>
-						<Form size='large'>
+						<Form size='large' onSubmit={this.handleSubmit}>
 							<Segment basic stacked>
-								<TextInput label="email" placeholder="Enter email"/>
+								<TextInput label="email" placeholder="Enter email" name="email"/>
 								<Form.Field>
 									<Label style={{
 										backgroundColor: 'transparent',
@@ -44,6 +54,7 @@ export default class Login extends React.Component {
 											borderBottom: "#999 1px solid",
 											paddingBottom: "5px"
 										}}
+										name='password'
 										type='password'
 									/>
 								</Form.Field>
@@ -59,3 +70,11 @@ export default class Login extends React.Component {
 	}
 }
 
+export default connect(
+	state => ({
+		authUser: state.sessionState.authUser
+	}),
+	dispatch => ({
+		onAuthUser: authUser => dispatch({ type: 'AUTH_USER_SET', authUser })
+	})
+)(Login)

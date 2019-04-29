@@ -55,12 +55,15 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: require.resolve('babel-loader'),
+        //query: { presets:['react'] },
         options: {
           compact: process.env.NODE_ENV === 'production',
           // This is a feature of `babel-loader` for webpack (not Babel itself).
           // It enables caching results in ./node_modules/.cache/babel-loader/
           // directory for faster rebuilds.
           cacheDirectory: isDev,
+          presets: ['@babel/react'],
+          plugins: ['@babel/plugin-proposal-class-properties',  '@babel/plugin-proposal-export-default-from']
         },
       },
       // "postcss" loader applies autoprefixer to our LESS.
@@ -168,7 +171,6 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },
-      { test: /(\.css$)/, loaders: ['style-loader', 'css-loader'] },
     ],
   },
   // Some libraries import Node modules but don't use them in the browser.

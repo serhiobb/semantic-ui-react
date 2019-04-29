@@ -25,6 +25,7 @@ export default class TextInput extends React.Component {
 					color="green"
 					icon="circle"
 					placeholder={this.props.placeholder}
+					name={this.props.name}
 					style={{
 						borderBottom: "#09A  1px solid",
 						paddingBottom: "5px"

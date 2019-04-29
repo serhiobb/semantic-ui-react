@@ -73,7 +73,10 @@ module.exports = function (proxy, allowedHost) {
           .replace(/[\\]+/g, '\\\\')}).+[\\\\/]node_modules[\\\\/]`,
         'g'
       ),
+      aggregateTimeout: 300,
+      poll: 300
     },
+
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
     host,

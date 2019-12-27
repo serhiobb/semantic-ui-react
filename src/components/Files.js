@@ -5,7 +5,7 @@ import { Menu, Label, Tab, Segment, Table, Button, Icon } from 'semantic-ui-reac
 export default class Files extends React.Component {
 	panes = [
 		{menuItem: 'All', render: () =>
-			<Table style={{margin: "20px"}}>
+			<Table>
 				<Table.Header>
 					<Table.Row>
 						<Table.HeaderCell>Product</Table.HeaderCell>
@@ -23,7 +23,7 @@ export default class Files extends React.Component {
 		{
 			menuItem: <Menu.Item key='New'>New<Label color="green" floating>4</Label></Menu.Item>,
 			render: () =>
-				<Table style={{margin: "20px"}}>
+				<Table>
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell>Product</Table.HeaderCell>
@@ -40,7 +40,7 @@ export default class Files extends React.Component {
 		{
 			menuItem: <Menu.Item key='Archive'>Archive<Label color="red" floating>4</Label></Menu.Item>,
 			render: () =>
-				<Table style={{margin: "20px"}}>
+				<Table>
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell>Product</Table.HeaderCell>
@@ -91,10 +91,11 @@ export default class Files extends React.Component {
 	))
 	render() {
 		return(
-
-		<Tab style={{paddingTop: '20px'}}
+			<div>
+		<Tab style={{padding: '20px'}}
 				menu={{ attached: false, tabular: false }}
 				panes={this.panes} />
+			</div>
 		)
 	}
 }

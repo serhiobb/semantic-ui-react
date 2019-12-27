@@ -25,7 +25,7 @@
     },
     "production": {
       "plugins": [
-        "transform-react-remove-prop-types"
+        "react-hot-loader/babel"
       ]
     }
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-	Menu, Container, Button, Grid, Icon, Input, Label, 
+	Menu, Section, Container, Button, Grid, Icon, Input, Label,
 	Sticky, Sidebar, Segment
 } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
@@ -13,13 +13,12 @@ export default class Layout extends React.Component {
 	render() {
 		const { visibleMenu } = this.state
 		return(
-			<Container fluid style={{height: '100%'}}>
 			<Container fluid>
 				<Menu borderless={true} size='massive' fluid={true}>
 						<Sticky active={true}>
-						<Menu.Item as={Button} onClick={this.toggleMenu}>
-							<Icon size="big" name='content'/>
-						</Menu.Item>
+							<Menu.Item as={Button} onClick={this.toggleMenu}>
+								<Icon size="big" name='content'/>
+							</Menu.Item>
 						</Sticky>
 						<Menu.Item as={Link} to={'/'} active>
 							<Icon name='circle' color="yellow"
@@ -29,8 +28,6 @@ export default class Layout extends React.Component {
 						<Menu.Item as={Link} to={'/login'} position='right'>Log in</Menu.Item>
 						<Menu.Item as={Link} to={'/register'}>Register</Menu.Item>
 				</Menu>
-			</Container>
-			<Container fluid style={{height: '100%'}}>
 			  <Sidebar.Pushable>
 					<Sidebar as={Menu} color='grey' inverted={true} animation='slide along'
 					         width='thin' visible={visibleMenu} dimmed={true} vertical>
@@ -48,13 +45,10 @@ export default class Layout extends React.Component {
 						</Menu.Item>
 					</Sidebar>
 					<Sidebar.Pusher id="content">
-							<Container fluid>
 								{this.props.children}
-							</Container>
 					</Sidebar.Pusher>
 				</Sidebar.Pushable>
-			</Container>
-		</Container>
+				</Container>
 		)
 	}
 }

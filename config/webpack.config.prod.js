@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const path = require('path')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -16,7 +17,7 @@ const commonConfig = require('./webpack.config.common')
 const publicPath = paths.servedPath
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
+//const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
@@ -35,10 +36,10 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 // The development configuration is different and lives in a separate file.
 module.exports = configMerge(commonConfig, {
   // Don't attempt to continue if there are any errors.
-  bail: true,
+  // bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
   // You can exclude the *.map files from the build during deployment.
-  devtool: shouldUseSourceMap ? 'source-map' : false,
+  devtool: 'cheap-module-source-map',
   // In production, we only want to load the polyfills and the app code.
   entry: [
     paths.appIndexJs
@@ -55,9 +56,10 @@ module.exports = configMerge(commonConfig, {
     publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
-      path
-        .relative(paths.appSrc, info.absoluteResourcePath)
-        .replace(/\\/g, '/'),
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
+      // path
+        // .relative(paths.appSrc, info.absoluteResourcePath)
+        // .replace(/\\/g, '/'),
   },
   plugins: [
     // Makes some environment variables available in index.html.
@@ -70,48 +72,50 @@ module.exports = configMerge(commonConfig, {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
+      // minify: {
+      //   removeComments: true,
+      //   collapseWhitespace: true,
+      //   removeRedundantAttributes: true,
+      //   useShortDoctype: true,
+      //   removeEmptyAttributes: true,
+      //   removeStyleLinkTypeAttributes: true,
+      //   keepClosingSlash: true,
+      //   minifyJS: true,
+      //   minifyCSS: true,
+      //   minifyURLs: true,
+      // },
     }),
+    new webpack.NamedModulesPlugin(),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
     new webpack.DefinePlugin(env.stringified),
+    new CaseSensitivePathsPlugin(),
     // Minify the code.
-    new UglifyJsPlugin({
-      cache: true,
-      sourceMap: shouldUseSourceMap,
-      uglifyOptions: {
-        compress: {
-          warnings: false,
-          // Disabled because of an issue with Uglify breaking seemingly valid code:
-          // https://github.com/facebookincubator/create-react-app/issues/2376
-          // Pending further investigation:
-          // https://github.com/mishoo/UglifyJS2/issues/2011
-          comparisons: false,
-        },
-        mangle: {
-          safari10: true,
-        },
-        output: {
-          comments: false,
-          // Turned on because emoji and regex is not minified properly using default
-          // https://github.com/facebookincubator/create-react-app/issues/2488
-          ascii_only: true,
-        },
-      },
-    }),
+    // new UglifyJsPlugin({
+    //   cache: true,
+    //   sourceMap: shouldUseSourceMap,
+    //   uglifyOptions: {
+    //     compress: {
+    //       warnings: false,
+    //       // Disabled because of an issue with Uglify breaking seemingly valid code:
+    //       // https://github.com/facebookincubator/create-react-app/issues/2376
+    //       // Pending further investigation:
+    //       // https://github.com/mishoo/UglifyJS2/issues/2011
+    //       comparisons: false,
+    //     },
+    //     mangle: {
+    //       safari10: true,
+    //     },
+    //     output: {
+    //       comments: false,
+    //       // Turned on because emoji and regex is not minified properly using default
+    //       // https://github.com/facebookincubator/create-react-app/issues/2488
+    //       ascii_only: true,
+    //     },
+    //   },
+    // }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.

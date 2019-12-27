@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image, Icon, Segment, Form, Button, Label, Grid } from 'semantic-ui-react'
+import { Card, Image, Icon, Segment, Form, Button, Label, Grid, Input } from 'semantic-ui-react'
 
 export default class TextInput extends React.Component {
 	constructor(props){
@@ -18,8 +18,7 @@ export default class TextInput extends React.Component {
 				}}>
 					{this.props.label}
 				</Label>
-				<Form.Input
-					fluid
+				<Input
 					transparent
 					circular
 					color="green"
@@ -35,4 +34,3 @@ export default class TextInput extends React.Component {
 		)
 	}
 }
-
